@@ -3,18 +3,19 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
   View,
+  SectionList,
+  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const App = () => {
   return (
     <View backgroundColor="black" style={{flex: 1}}>
-      <View backgroundColor="#082032" flexDirection="row" alignItems="center">
+      <View backgroundColor="#2B2B2B" flexDirection="row" alignItems="center">
         <Icon name="youtube" size={50} color="red" style={{marginLeft: 10}} />
         <Text
           style={{
@@ -37,97 +38,96 @@ const App = () => {
           style={{width: 50, height: 50, borderRadius: 25, marginLeft: 20}}
         />
       </View>
-      <ScrollView>
-        <View>
-          <Image source={require('.//image/satu.jpg')} style={stylesa.Gambar} />
-          <View style={{flexDirection: 'row', alignItems: 'stretch'}}>
-            <Image
-              source={require('.//image/profileChannel.jpg')}
-              style={stylesa.Profile}
-            />
-            <View style={{flexDirection: 'column'}}>
-              <Text style={stylesa.Judul}>ROSE - 'On The Ground' M/V</Text>
-              <Text style={{color: 'white', marginLeft: 10}}>
-                BLACKPINK . 207m views
-              </Text>
-              <Text style={{color: 'white', marginLeft: 10, marginBottom: 20}}>
-                9 months ago
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image
-            source={require('.//image/dhua.jpeg')}
-            style={stylesa.Gambar}
-          />
-          <View style={{flexDirection: 'row', alignItems: 'stretch'}}>
-            <Image
-              source={require('.//image/profileChannel.jpg')}
-              style={stylesa.Profile}
-            />
-            <View style={{flexDirection: 'column'}}>
-              <Text style={stylesa.Judul}>
-                BLACKPINK X SELENA GOMEZ - ' Ice Cream'
-              </Text>
-              <Text style={{color: 'white', marginLeft: 10}}>
-                BLACKPINK . 207m views
-              </Text>
-              <Text style={{color: 'white', marginLeft: 10, marginBottom: 20}}>
-                9 months ago
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image
-            source={require('.//image/tiga.jpeg')}
-            style={stylesa.Gambar}
-          />
-          <View style={{flexDirection: 'row', alignItems: 'stretch'}}>
-            <Image
-              source={require('.//image/profileChannel.jpg')}
-              style={stylesa.Profile}
-            />
-            <View style={{flexDirection: 'column'}}>
-              <Text style={stylesa.Judul}>
-                BLACKPINK - DDDU DDUU Dance Perform
-              </Text>
-              <Text style={{color: 'white', marginLeft: 10}}>
-                BLACKPINK . 207m views
-              </Text>
-              <Text style={{color: 'white', marginLeft: 10, marginBottom: 20}}>
-                9 months ago
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <Image
-            source={require('.//image/empat.jpeg')}
-            style={stylesa.Gambar}
-          />
-          <View style={{flexDirection: 'row', alignItems: 'stretch'}}>
-            <Image
-              source={require('.//image/profileChannel.jpg')}
-              style={stylesa.Profile}
-            />
-            <View style={{flexDirection: 'column'}}>
-              <Text style={stylesa.Judul}>BLACKPINK - 'Pretty Savage'</Text>
-              <Text style={{color: 'white', marginLeft: 10}}>
-                BLACKPINK . 207m views
-              </Text>
-              <Text style={{color: 'white', marginLeft: 10, marginBottom: 20}}>
-                9 months ago
-              </Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+      <SafeAreaView style={{flex: 1}}>
+        <SectionList
+          sections={SECTIONS}
+          stickySectionHeadersEnabled={false}
+          renderItem={({item, sections}) => {
+            return <OnTheList item={item} />;
+          }}
+        />
+      </SafeAreaView>
     </View>
   );
 };
 
+const OnTheList = ({item}) => {
+  return (
+    <View>
+      <View>
+        <Image
+          source={{
+            uri: item.gambar,
+          }}
+          style={stylesa.Gambar}
+        />
+        <View style={{flexDirection: 'row', alignItems: 'stretch'}}>
+          <Image
+            source={{
+              uri: item.profile,
+            }}
+            style={stylesa.Profile}
+          />
+          <View style={{flexDirection: 'column'}}>
+            <Text style={stylesa.Judul}>{item.judul}</Text>
+            <Text style={{color: 'white', marginLeft: 10}}>{item.view}</Text>
+            <Text style={{color: 'white', marginLeft: 10, marginBottom: 20}}>
+              {item.time}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const SECTIONS = [
+  {
+    title: 'Made for you',
+    data: [
+      {
+        key: '1',
+        gambar: 'https://i.ibb.co/mDCb5J5/satu.jpg',
+        judul: "ROSE - 'On The Ground' M/V",
+        profile: 'https://i.ibb.co/YRStTB7/profile-Channel.jpg',
+        view: 'BLACKPINK . 207m views',
+        time: '9 months ago',
+      },
+      {
+        key: '2',
+        gambar: 'https://i.ibb.co/mDCb5J5/satu.jpg',
+        judul: "ROSE - 'On The Ground' M/V",
+        profile: 'https://i.ibb.co/YRStTB7/profile-Channel.jpg',
+        view: 'BLACKPINK . 207m views',
+        time: '9 months ago',
+      },
+      {
+        key: '3',
+        gambar: 'https://i.ibb.co/mDCb5J5/satu.jpg',
+        judul: "ROSE - 'On The Ground' M/V",
+        profile: 'https://i.ibb.co/YRStTB7/profile-Channel.jpg',
+        view: 'BLACKPINK . 207m views',
+        time: '9 months ago',
+      },
+      {
+        key: '4',
+        gambar: 'https://i.ibb.co/mDCb5J5/satu.jpg',
+        judul: "ROSE - 'On The Ground' M/V",
+        profile: 'https://i.ibb.co/YRStTB7/profile-Channel.jpg',
+        view: 'BLACKPINK . 207m views',
+        time: '9 months ago',
+      },
+      {
+        key: '5',
+        gambar: 'https://i.ibb.co/mDCb5J5/satu.jpg',
+        judul: "ROSE - 'On The Ground' M/V",
+        profile: 'https://i.ibb.co/YRStTB7/profile-Channel.jpg',
+        view: 'BLACKPINK . 207m views',
+        time: '9 months ago',
+      },
+    ],
+  },
+];
 const stylesa = StyleSheet.create({
   Text: {
     fontSize: 28,
@@ -169,6 +169,7 @@ const stylesa = StyleSheet.create({
     width: 60,
     borderRadius: 25,
     marginBottom: 15,
+    marginLeft: 8,
   },
   Judul: {
     color: 'white',
